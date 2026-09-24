@@ -1,0 +1,55 @@
+{
+    "teacher_name": "المهندس عموري",
+    "teacher_pass": "12345",
+    "subject_name": "البرمجة",
+    "classes_structure": {
+        "الاول": {
+            "ب": {
+                "file_path": null,
+                "students": []
+            },
+            "ي": {
+                "file_path": null,
+                "students": []
+            },
+            "ح": {
+                "file_path": null,
+                "students": []
+            }
+        },
+        "اثتي": {
+            "ي": {
+                "file_path": null,
+                "students": []
+            }
+        },
+        "يي": {
+            "ث": {
+                "file_path": null,
+                "students": []
+            },
+            "ض": {
+                "file_path": null,
+                "students": []
+            }
+        },
+        "ثث": {
+            "ث": {
+                "file_path": null,
+                "students": []
+            }
+        },
+        "اا": {
+            "ض": {
+                "file_path": null,
+                "students": []
+            }
+        },
+        "تت": {
+            "ض": {
+                "file_path": null,
+                "students": []
+            }
+        }
+    }
+}
