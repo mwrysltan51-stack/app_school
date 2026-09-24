@@ -34,11 +34,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install flet pandas openpyxl
-        python -m pip install --upgrade flet
 
     - name: Build APK
       run: |
-        python -m flet build apk
+        flet build apk
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
