@@ -128,7 +128,6 @@ def show_attendance(page: ft.Page, class_name: str, section_name: str):
         page.update()
 
     def save_and_export(e):
-        # تعريف الزر أولاً بشكل آمن لتجنب أي خطأ
         nonlocal btn_save
 
         section_data["attendance_records"][today_date] = attendance_state
@@ -145,12 +144,12 @@ def show_attendance(page: ft.Page, class_name: str, section_name: str):
         file_name = f"تحضير_{class_name}_شعبة_{section_name}_{today_date}.xlsx"
 
         try:
-            # مسار التخزين (ويندوز أو أندرويد)
+            # مسار التحميلات العام مع تفعيل البديل الآمن لمنع أي شاشة سوداء
             android_downloads = "/storage/emulated/0/Download"
             if os.path.exists(android_downloads):
                 safe_base = android_downloads
             else:
-                safe_base = os.path.join(os.path.expanduser("~"), "Documents")
+                safe_base = ft.get_application_documents_path()
 
             # إنشاء شجرة المجلدات: تحضير الطلاب -> الصف -> الشعبة
             main_parent_folder = os.path.join(safe_base, "تحضير الطلاب")
@@ -176,9 +175,7 @@ def show_attendance(page: ft.Page, class_name: str, section_name: str):
                 ws.append([item["رقم_الطالب"], item["اسم_الطالب"], item["الحالة"]])
             wb.save(final_file_path)
             
-            # -------------------------------------------------------------
-            # --- التعديل الجديد: إنشاء مجلد "تحضير اليوم" وتحديث محتواه ---
-            # -------------------------------------------------------------
+            # --- إنشاء مجلد "تحضير اليوم" وتحديث محتواه ---
             today_folder = os.path.join(main_parent_folder, "تحضير اليوم")
             if not os.path.exists(today_folder):
                 os.makedirs(today_folder, exist_ok=True)
@@ -196,7 +193,6 @@ def show_attendance(page: ft.Page, class_name: str, section_name: str):
             # نسخ ملف الإكسل الحالي إلى مجلد تحضير اليوم
             today_file_path = os.path.join(today_folder, file_name)
             shutil.copy(final_file_path, today_file_path)
-            # -------------------------------------------------------------
 
             # إدارة السجلات للحفاظ على آخر ملفين في مجلد الشعبة
             if "saved_files" not in section_data:
@@ -220,7 +216,6 @@ def show_attendance(page: ft.Page, class_name: str, section_name: str):
 
         save_data(app_data)
 
-        # تحديث شكل الزر بأمان تام
         btn_save.bgcolor = "#1E3A8A"
         btn_save.text = "تم الحفظ ✓"
 
