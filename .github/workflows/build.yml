@@ -36,14 +36,11 @@ jobs:
         pip install flet pandas openpyxl
 
     - name: Build APK
-      run: |
-        flet build apk --bundle-app-dependencies
+      run: flet build apk
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: app-release
-        path: |
-          build/**/*.apk
-          dist/*.apk
+        name: Student-Attendence-APK
+        path: build/apk/**/*.apk|
 
